@@ -39,6 +39,8 @@ imprimir_menu () {
     echo -e "\t\t\t j.  Comprobar programa instalado";
     echo -e "\t\t\t k.  Crear ususario sor1";
     echo -e "\t\t\t l.  ....";
+    echo -e "\t\t\t m.  Interactuando con otros sistemas";
+    echo -e "\t\t\t n.  ....";
     echo -e "\t\t\t q.  Salir";
     echo "";
     echo -e "Escriba la opción y presione ENTER";
@@ -77,7 +79,7 @@ decidir () {
         echo "desea ejecutar? (s/n)";
             read respuesta;
             case $respuesta in
-                [Nn]* ) break;;
+                   [Nn]* ) break;;
                    [Ss]* ) eval $1
                 break;;
                 * ) echo "Por favor tipear S/s ó N/n.";;
@@ -107,7 +109,6 @@ d_funcion () {
     imprimir_encabezado "\tOpción d.  CPU";
     decidir "cat /proc/cpuinfo | grep 'model name'"
 }
-
 
 e_funcion () {
     imprimir_encabezado "\tOpción e.  Interrupciones";
@@ -145,7 +146,6 @@ j_funcion () {
                 echo "";
                 echo "El programa $programa no se encuentra instalado"
             fi
-
 }
 k_funcion () {
     imprimir_encabezado "\tOpción k.  Crear usuario sor1";
@@ -157,6 +157,28 @@ k_funcion () {
 }
 l_funcion () {
     imprimir_encabezado "\tOpción l.  ....";
+    decidir ""
+}
+m_funcion () {
+    imprimir_encabezado "\tOpción m.  Ejecutar comandos";
+    let nrolinea=0;
+    while read linea; do
+        firstChar="${linea:0:1}";
+        if [ "$firstChar" = "#" ]; then
+            echo "$linea"
+        elif [ "$firstChar" = "" ]; then
+            echo ""
+        else
+            echo "---------------------------------------"
+            echo -e "user@maquina: directorio\n"
+            let nrolinea++
+            echo "linea $nrolinea: $linea"   
+            #decidir "$linea"
+        fi
+    done < comandos.txt
+}
+n_funcion () {
+    imprimir_encabezado "\tOpción n.  ....";
     decidir ""
 }
 
@@ -183,6 +205,8 @@ do
         j|J) j_funcion;;
         k|K) k_funcion;;
         l|L) l_funcion;;
+        m|M) m_funcion;;
+        n|N) n_funcion;;
         q|Q) break;;
         *) malaEleccion;;
     esac
