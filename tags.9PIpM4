@@ -1,0 +1,25 @@
+tenedor1	deadlock.c	/^sem_t tenedor1;$/;"	v
+tenedor2	deadlock.c	/^sem_t tenedor2;$/;"	v
+tenedor3	deadlock.c	/^sem_t tenedor3;$/;"	v
+platon	deadlock.c	/^void* platon (void* args){$/;"	f
+aristoteles	deadlock.c	/^void* aristoteles (void* args){$/;"	f
+socrates	deadlock.c	/^void* socrates (void* args){$/;"	f
+main	deadlock.c	/^int main ()$/;"	f
+imprimir_menu	supermenu.sh	/^imprimir_menu () {$/;"	f
+imprimir_encabezado	supermenu.sh	/^imprimir_encabezado () {$/;"	f
+esperar	supermenu.sh	/^esperar () {$/;"	f
+malaEleccion	supermenu.sh	/^malaEleccion () {$/;"	f
+decidir	supermenu.sh	/^decidir () {$/;"	f
+a_funcion	supermenu.sh	/^a_funcion () {$/;"	f
+b_funcion	supermenu.sh	/^b_funcion () {$/;"	f
+c_funcion	supermenu.sh	/^c_funcion () {$/;"	f
+d_funcion	supermenu.sh	/^d_funcion () {$/;"	f
+e_funcion	supermenu.sh	/^e_funcion () {$/;"	f
+f_funcion	supermenu.sh	/^f_funcion () {$/;"	f
+g_funcion	supermenu.sh	/^g_funcion () {$/;"	f
+h_funcion	supermenu.sh	/^h_funcion () {$/;"	f
+i_funcion	supermenu.sh	/^i_funcion () {$/;"	f
+j_funcion	supermenu.sh	/^j_funcion () {$/;"	f
+k_funcion	supermenu.sh	/^k_funcion () {$/;"	f
+l_funcion	supermenu.sh	/^l_funcion () {$/;"	f
+m_funcion	supermenu.sh	/^m_funcion () {$/;"	f

@@ -184,7 +184,7 @@ m_funcion () {
     do
         firstChar="${linea:0:1}";
         if [[ $firstChar =~ [A-Za-z] ]]; then
-            echo "---------------------------------------"
+            echo "-----------------------------------------"
             echo -e "$USER@$HOSTNAME:$proyectoActual\n"
             let nrolinea++
             echo "linea $nrolinea: $linea"
