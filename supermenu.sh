@@ -12,7 +12,7 @@
 #------------------------------------------------------
 # VARIABLES GLOBALES
 #------------------------------------------------------
-proyectoActual="/home/sor1";
+proyectoActual=$(pwd);
 proyectos="/home/sor1/Documents/repo_GitLab/repos.txt";
 
 #------------------------------------------------------
@@ -33,14 +33,13 @@ imprimir_menu () {
     echo -e "\t\t\t d.  Identificar CPU";
     echo -e "\t\t\t e.  Ver Interrupciones";
     echo -e "\t\t\t f.  Ver Swap";
-    echo -e "\t\t\t g.  Ver Cnatidad de Moemoria Principal";
+    echo -e "\t\t\t g.  Ver Cantidad de Memoria Principal";
     echo -e "\t\t\t h.  Ver Placa de Video";
     echo -e "\t\t\t i.  Ver Idioma Teclado";
     echo -e "\t\t\t j.  Comprobar programa instalado";
-    echo -e "\t\t\t k.  Crear ususario sor1";
-    echo -e "\t\t\t l.  ....";
-    echo -e "\t\t\t m.  Interactuando con otros sistemas";
-    echo -e "\t\t\t n.  ....";
+    echo -e "\t\t\t k.  Crear ususario";
+    echo -e "\t\t\t l.  Ver actividad de usuarios";
+    echo -e "\t\t\t m.  Interactuando con otros sistemas (Ej 2)";
     echo -e "\t\t\t q.  Salir";
     echo "";
     echo -e "Escriba la opción y presione ENTER";
@@ -74,7 +73,7 @@ malaEleccion () {
 }
 
 decidir () {
-    echo $1;
+    #echo $1;
     while true; do
         echo "desea ejecutar? (s/n)";
             read respuesta;
@@ -92,46 +91,55 @@ decidir () {
 #------------------------------------------------------
 a_funcion () {
     imprimir_encabezado "\tOpción a.  Ver estado del proyecto";
+    echo "ls-l";
     decidir "ls -l";
 }
 
 b_funcion () {
     imprimir_encabezado "\tOpción b.  Kernel";
+    echo "uname -r";
    	decidir "uname -r";
 }
 
 c_funcion () {
     imprimir_encabezado "\tOpción c.  Arquitectura";
+    echo "uname -m";
     decidir "uname -m"
 }
 
 d_funcion () {
     imprimir_encabezado "\tOpción d.  CPU";
+    echo "cat /proc/cpuinfo | grep 'model name'";
     decidir "cat /proc/cpuinfo | grep 'model name'"
 }
 
 e_funcion () {
     imprimir_encabezado "\tOpción e.  Interrupciones";
+    echo "head -n 10 /proc/interrupts";
     decidir "head -n 10 /proc/interrupts"
 }
 
 f_funcion () {
     imprimir_encabezado "\tOpción f.  Swap";
+    echo "cat /proc/swaps";
     decidir "cat /proc/swaps"
 }
 
 g_funcion () {
     imprimir_encabezado "\tOpción g.  Cantidad de Memoria";
+    echo "free -h";
     decidir "free -h"
 }
 
 h_funcion () {
     imprimir_encabezado "\tOpción h.  Placa de Video";
+    echo "lspci |grep VGA";
     decidir "lspci |grep VGA"
 }
 
 i_funcion () {
     imprimir_encabezado "\tOpción i.  Idioma Teclado";
+    echo "localectl status";
     decidir "localectl status"
 }
 j_funcion () {
@@ -148,39 +156,45 @@ j_funcion () {
             fi
 }
 k_funcion () {
-    imprimir_encabezado "\tOpción k.  Crear usuario sor1";
-
-    sudo useradd -g sudo sor1
-    sudo passwd sor1
-    sudo login sor1
+    imprimir_encabezado "\tOpción k.  Crear usuario";
+    echo "Ingrese un nombre de usuario:"
+    read nombreUsuario
+    echo "sudo useradd -g sudo $nombreUsuario"
+    decidir "sudo useradd -g sudo $nombreUsuario"
+    echo "sudo passwd $nombreUsuario"
+    decidir "sudo passwd $nombreUsuario"
+    echo "sudo login $nombreUsuario"
+    decidir "sudo login $nombreUsuario"
 
 }
 l_funcion () {
-    imprimir_encabezado "\tOpción l.  ....";
-    decidir ""
+    imprimir_encabezado "\tOpción l.  Ver actividad de usuario";
+    echo "Ingrese usuario:"
+    read usuario
+    cat /var/log/auth.log | grep $usuario > actividad_$usuario.txt
+    gedit actividad_$usuario.txt&
+
 }
 m_funcion () {
     imprimir_encabezado "\tOpción m.  Ejecutar comandos";
     let nrolinea=0;
-    while read linea; do
+    FILENAME="comandos.txt"
+    exec {FD}<${FILENAME}
+    while read -r -u ${FD} linea;
+    do
         firstChar="${linea:0:1}";
-        if [ "$firstChar" = "#" ]; then
-            echo "$linea"
-        elif [ "$firstChar" = "" ]; then
-            echo ""
-        else
+        if [[ $firstChar =~ [A-Za-z] ]]; then
             echo "---------------------------------------"
-            echo -e "user@maquina: directorio\n"
+            echo -e "$USER@$HOSTNAME:$proyectoActual\n"
             let nrolinea++
-            echo "linea $nrolinea: $linea"   
-            #decidir "$linea"
+            echo "linea $nrolinea: $linea"
+            decidir "$linea"
+        else
+            echo "$linea"
         fi
-    done < comandos.txt
+    done {FD}< comandos.txt
 }
-n_funcion () {
-    imprimir_encabezado "\tOpción n.  ....";
-    decidir ""
-}
+
 
 #------------------------------------------------------
 # LOGICA PRINCIPAL
@@ -206,7 +220,6 @@ do
         k|K) k_funcion;;
         l|L) l_funcion;;
         m|M) m_funcion;;
-        n|N) n_funcion;;
         q|Q) break;;
         *) malaEleccion;;
     esac

@@ -1,0 +1,22 @@
+Sep  9 20:47:07 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris ; USER=root ; COMMAND=/usr/bin/apt install htop
+Sep  9 20:48:29 ubuntu pkexec[5309]: chris: Executing command [USER=root] [TTY=unknown] [CWD=/home/chris] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Sep  9 21:25:10 ubuntu gdm-password]: pam_unix(gdm-password:session): session opened for user chris by (uid=0)
+Sep  9 21:25:10 ubuntu systemd: pam_unix(systemd-user:session): session opened for user chris by (uid=0)
+Sep  9 21:25:10 ubuntu systemd-logind[798]: New session 3 of user chris.
+Sep  9 21:26:24 ubuntu pkexec[2007]: chris: Executing command [USER=root] [TTY=unknown] [CWD=/home/chris] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Sep  9 21:49:25 ubuntu gdm-password]: pam_unix(gdm-password:session): session closed for user chris
+Sep 10 00:47:46 ubuntu gdm-password]: pam_unix(gdm-password:session): session opened for user chris by (uid=0)
+Sep 10 00:47:46 ubuntu systemd-logind[732]: New session 2 of user chris.
+Sep 10 00:47:46 ubuntu systemd: pam_unix(systemd-user:session): session opened for user chris by (uid=0)
+Sep 10 00:49:02 ubuntu pkexec[1982]: chris: Executing command [USER=root] [TTY=unknown] [CWD=/home/chris] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Sep 10 00:53:15 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/apt-get update
+Sep 10 00:53:40 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/apt-get install apache2
+Sep 10 00:53:45 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/add-apt-repository ppa:ondrej/php
+Sep 10 00:54:08 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/apt-get update
+Sep 10 00:54:17 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/apt-get install php5.6
+Sep 10 00:55:00 ubuntu pkexec[4462]: chris: Executing command [USER=root] [TTY=unknown] [CWD=/home/chris] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Sep 10 00:58:00 ubuntu pkexec[11762]: chris: Executing command [USER=root] [TTY=unknown] [CWD=/home/chris] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Sep 10 01:13:00 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/sbin/useradd -g sudo sor1
+Sep 10 01:13:03 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/bin/passwd sor1
+Sep 10 01:13:12 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/bin/login sor1
+Sep 10 01:17:42 ubuntu sudo:    chris : TTY=pts/0 ; PWD=/home/chris/SORTP1 ; USER=root ; COMMAND=/usr/sbin/useradd -g sudo sor1
