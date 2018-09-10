@@ -101,7 +101,7 @@ int main ()
 
 
    //antes de borrar los semaforos, espero que los threads terminen
-   pthread_join(threadPlaton , NULL);
+   pthread_join(threadPlaton , NULL);i
    pthread_join(threadAristoteles , NULL);
    pthread_join(threadSocrates , NULL);
 
