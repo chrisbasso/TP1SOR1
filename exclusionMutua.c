@@ -1,17 +1,13 @@
 #include <stdio.h>
 #include <pthread.h>
-
 #include <unistd.h>     // para hacer sleep
 #include <stdlib.h>     // para libreria de numeros random: srand, rand
 #include <time.h>       // para tomar el tiempo
-
-
 
 //variables globales
 int ultimo_id_asignado = 100;
 #define NUM_USUARIOS 4
 pthread_mutex_t mi_mutex;
-
 
 void esperar () {
   /********************************
@@ -30,8 +26,7 @@ void esperar () {
    ******************************/
 }
 
-void* registrar (void* parametro)
-{
+void* registrar (void* parametro){
   //tomar los parametros
   int user = (intptr_t) parametro;
 
@@ -55,6 +50,7 @@ void* registrar (void* parametro)
 
 
 int main (){
+  
   pthread_mutex_init ( &mi_mutex, NULL);
   pthread_t threads_primera_tanda[NUM_USUARIOS];
   pthread_t threads_segunda_tanda[NUM_USUARIOS];
