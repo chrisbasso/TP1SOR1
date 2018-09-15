@@ -94,4 +94,3 @@ int main (){
 //Para compilar:   gcc parte2_ej1_exclu_mutua.c -o e1 -lpthread
 //Para ejecutar:   ./e1
 
-
