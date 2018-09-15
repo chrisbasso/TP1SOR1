@@ -164,7 +164,7 @@ k_funcion () {
     echo "sudo passwd $nombreUsuario"
     decidir "sudo passwd $nombreUsuario"
     echo "sudo login $nombreUsuario"
-    decidir "sudo login $nombreUsuario"
+    decidir "xterm -e 'sudo login $nombreUsuario'"
 
 }
 l_funcion () {
