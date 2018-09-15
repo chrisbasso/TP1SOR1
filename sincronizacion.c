@@ -13,78 +13,57 @@ sem_t g;
 
 pthread_mutex_t mi_mutex;
 
-void* funcion_a ()
-{
+void* funcion_a (){
+	
 	sem_wait(&a);
-	   
 	pthread_mutex_lock(&mi_mutex);
-
 	printf(" ↑ ");
-
 	sem_post(&d);
 	sem_post(&e);
-
 	pthread_mutex_unlock(&mi_mutex);
-
 	pthread_exit(NULL);
 }
 
-void* funcion_b ()
-{
+void* funcion_b (){
+	
 	sem_wait(&g);    
 	sem_wait(&b);
 	sem_wait(&d);
-	    
 	pthread_mutex_lock(&mi_mutex);
-
 	printf(" → ");
-		
 	sem_post(&a);
 	sem_post(&c);
-
 	pthread_mutex_unlock(&mi_mutex);
-	    
 	pthread_exit(NULL);
 }
 
-void* funcion_c ()
-{
+void* funcion_c (){
+	
 	sem_wait(&e);
 	sem_wait(&c);
 	sem_wait(&d);  
-
 	pthread_mutex_lock(&mi_mutex);
-
 	printf(" ← ");
-
 	sem_post(&a);
 	sem_post(&b);
 	sem_post(&f);
-
 	pthread_mutex_unlock(&mi_mutex);
-
 	pthread_exit(NULL);
 }
 
-void* funcion_e ()
-{
+void* funcion_e (){
+	
 	sem_wait(&f);
 	sem_wait(&e); 
-
 	pthread_mutex_lock(&mi_mutex);
-
 	printf("\n");
-
 	sem_post(&g);
-
 	pthread_mutex_unlock(&mi_mutex);
-
 	pthread_exit(NULL);
 }
 
-
-int main()
-{
+int main(){
+	
 	pthread_mutex_init ( &mi_mutex, NULL);
 
 	sem_init(&a,0,0);
@@ -120,8 +99,7 @@ int main()
 
 		i++;
 
-		if (rc)
-		{
+		if (rc){
 			printf("Error:unable to create thread, %d \n", rc);
 			exit(-1);
 		}
